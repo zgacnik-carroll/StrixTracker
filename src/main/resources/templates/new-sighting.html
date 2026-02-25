@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Owl Sighting</title>
+</head>
+<body>
+
+<h2>Add Owl Sighting</h2>
+
+<form th:action="@{/sightings}" method="post">
+    Species: <input type="text" name="species" required><br>
+    Location: <input type="text" name="location" required><br>
+    Notes: <textarea name="notes"></textarea><br>
+    <button type="submit">Save</button>
+</form>
+
+<a th:href="@{/sightings}">View Sightings</a>
+
+</body>
+</html>

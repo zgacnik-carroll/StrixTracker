@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Owl Sightings</title>
+</head>
+<body>
+
+<h2>Owl Sightings</h2>
+
+<a th:href="@{/sightings/new}">Add Sighting</a>
+
+<ul>
+    <li th:each="s : ${sightings}">
+        <b th:text="${s['species']}">Species</b> -
+        <span th:text="${s['location']}">Location</span> -
+        <span th:text="${s['dateTime']}">Date/Time</span>
+        <p th:text="${s['notes']}">Notes</p>
+    </li>
+</ul>
+
+</body>
+</html>
