@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Add New Owl Sighting</title>
+    <link rel="stylesheet" href="/css/new-sighting.css">
 </head>
 <body>
+<div class="container">
 
-<h2>Add Owl Sighting</h2>
+    <h2>Add Owl Sighting</h2>
 
-<form th:action="@{/sightings}" method="post">
-    Species: <input type="text" name="species" required><br>
-    Location: <input type="text" name="location" required><br>
-    Notes: <textarea name="notes"></textarea><br>
-    <button type="submit">Save</button>
-</form>
+    <form th:action="@{/sightings}" method="post">
+        Species: <input type="text" name="species" required>
+        Location: <input type="text" name="location" required>
+        Notes: <textarea name="notes" required></textarea>
+        <button type="submit">Save</button>
+    </form>
 
-<a th:href="@{/sightings}">View Sightings</a>
+    <a th:href="@{/sightings}">View Sightings</a>
 
+</div>
 </body>
 </html>
