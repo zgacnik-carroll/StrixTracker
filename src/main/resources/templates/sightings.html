@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Owl Sightings</title>
-    <link rel="stylesheet" href="/css/sightings.css">
+    <link rel="stylesheet" th:href="@{/css/sightings.css}">
 </head>
 <body>
 <div class="container">
 
-    <a th:href="@{/}">Home</a>
+    <!-- Navigation -->
+    <nav>
+        <a th:href="@{/sightings/new}">Add Sighting</a>
+
+        <!-- Logout -->
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Logout
+        </a>
+        <form id="logout-form" th:action="@{/logout}" method="post" style="display:none;">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        </form>
+    </nav>
 
     <h2>Owl Sightings</h2>
-
-    <a th:href="@{/sightings/new}">Add Sighting</a>
 
     <ul>
         <li th:each="s : ${sightings}">

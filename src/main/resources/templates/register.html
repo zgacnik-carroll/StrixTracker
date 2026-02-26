@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+
+<!-- 🌌 Stars container -->
+<div class="stars"></div>
+
+<!-- 🌙 Moon -->
+<div class="moon"></div>
+
+<!-- 📝 Register form container -->
+<div class="container">
+  <h2>Register</h2>
+  <form th:action="@{/register}" method="post">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Register</button>
+  </form>
+  <p class="small-text">
+    Already have an account? <a th:href="@{/login}">Login here</a>
+  </p>
+  <p class="small-text">
+    <a th:href="@{/}">Back to Home</a>
+  </p>
+</div>
+
+<!-- 🌟 External JS for stars -->
+<script src="/js/stars.js"></script>
+</body>
+</html>

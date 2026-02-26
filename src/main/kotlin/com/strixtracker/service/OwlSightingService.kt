@@ -5,13 +5,15 @@ import com.strixtracker.repository.OwlSightingRepository
 import org.springframework.stereotype.Service
 
 @Service
-class OwlSightingService(
-    private val repository: OwlSightingRepository
-) {
+class OwlSightingService(private val repository: OwlSightingRepository) {
 
-    /** Save a new owl sighting to the database */
+    fun getSightingsForUser(username: String): List<OwlSighting> =
+        repository.findAllByUserUsername(username)
+
     fun addSighting(sighting: OwlSighting) = repository.save(sighting)
 
-    /** Retrieve all owl sightings */
-    fun getAllSightings(): List<OwlSighting> = repository.findAll()
+    fun getSpeciesCountsForUser(username: String): Map<String, Long> {
+        val rawCounts = repository.countSightingsBySpecies(username)
+        return rawCounts.associate { it[0] as String to (it[1] as Long) }
+    }
 }

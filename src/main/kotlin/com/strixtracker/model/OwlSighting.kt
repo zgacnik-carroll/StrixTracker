@@ -6,9 +6,14 @@ import java.time.LocalDateTime
 @Entity
 data class OwlSighting(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-    val species: String = "",
-    val location: String = "",
-    val dateTime: LocalDateTime = LocalDateTime.now(),
-    val notes: String = ""
+    val id: Long = 0L,
+
+    var species: String = "",
+    var location: String = "",
+    var dateTime: LocalDateTime = LocalDateTime.now(),
+    var notes: String = "",
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    var user: User? = null
 )

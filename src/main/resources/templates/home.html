@@ -1,26 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>StrixTracker</title>
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
-    <div class="leaves">
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
-        <span class="leaf"></span>
+<!-- 🌌 Stars + Moon Background -->
+<canvas id="star-canvas"></canvas>
+<div class="moon"></div>
+
+<!-- 🌌 Main card -->
+<div class="container">
+    <h1>StrixTracker</h1>
+    <p>Track, log, and visualize your owl sightings with ease.</p>
+    <div class="cta-buttons">
+        <a th:href="@{/register}" class="primary">Register</a>
+        <a th:href="@{/login}" class="secondary">Login</a>
     </div>
-    <div class="container">
-        <h1>StrixTracker</h1>
-        <p>Spring Boot Kotlin app is working!</p>
-        <a th:href="@{/sightings}">Sightings</a>
+</div>
+
+<!-- ✨ Feature highlights -->
+<div class="features">
+    <div class="feature-card">
+        <h3>Track Sightings</h3>
+        <p>Easily log owl sightings with species, location, and notes.</p>
     </div>
+    <div class="feature-card">
+        <h3>Analyze Trends</h3>
+        <p>Visualize sightings over time and discover patterns.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Personal Dashboard</h3>
+        <p>Keep all your observations organized and accessible.</p>
+    </div>
+</div>
+
+<!-- 📊 Quick stats -->
+<div class="stats">
+    <div class="stat-card">
+        <h2 th:text="${totalSightings}">0</h2>
+        <p>Sightings Logged</p>
+    </div>
+    <div class="stat-card">
+        <h2 th:text="${totalSpecies}">0</h2>
+        <p>Species Tracked</p>
+    </div>
+    <div class="stat-card">
+        <h2 th:text="${totalUsers}">1</h2>
+        <p>Active Users</p>
+    </div>
+</div>
+
+<!-- 📝 About section -->
+<section class="about">
+    <h2>About StrixTracker</h2>
+    <p>StrixTracker is your personal companion for logging and tracking owl sightings. Keep your observations organized, discover patterns over time, and contribute to a growing community of wildlife enthusiasts.</p>
+</section>
+
+<!-- 🌿 Tips for spotting owls -->
+<section class="tips">
+    <h2>Tips for Spotting Owls</h2>
+    <ul>
+        <li>Observe quietly at dusk or dawn when owls are most active.</li>
+        <li>Bring a flashlight or use red-light filters to avoid disturbing wildlife.</li>
+        <li>Note the location, species, and behavior of each sighting for accurate logging.</li>
+    </ul>
+</section>
+
+<!-- 🤝 Join the community -->
+<section class="community">
+    <h2>Join the Community</h2>
+    <p>Register now to track your sightings and see trends across all users. Contribute to science while enjoying your birdwatching adventures!</p>
+    <a th:href="@{/register}" class="primary">Get Started</a>
+</section>
+
+<!-- 📌 Footer -->
+<footer>
+    <p>&copy; 2026 StrixTracker | About | Contact</p>
+</footer>
+
+<!-- JS for stars -->
+<script src="/js/stars.js"></script>
 </body>
 </html>
