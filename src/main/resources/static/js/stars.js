@@ -1,5 +1,4 @@
-// stars.js
-
+// stars.js (with cleanup)
 const canvas = document.getElementById('star-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -11,36 +10,44 @@ window.addEventListener('resize', () => {
     height = canvas.height = window.innerHeight;
 });
 
-// Create stars
-const starCount = 150;
+const starCount = 100;
 const stars = [];
 
 for (let i = 0; i < starCount; i++) {
+    const baseAlpha = Math.random() * 0.8 + 0.2;
+    const twinkleSpeed = Math.random() * 0.02 + 0.01;
+    const phase = Math.random() * Math.PI * 2;
+
     stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
         radius: Math.random() * 1.5 + 0.5,
-        alpha: Math.random(),
-        delta: Math.random() * 0.02 + 0.005
+        baseAlpha,
+        twinkleSpeed,
+        phase
     });
 }
 
-// Animate stars
-function animateStars() {
+let animationId;
+
+function animateStars(time) {
     ctx.clearRect(0, 0, width, height);
-
     for (let star of stars) {
-        // twinkle
-        star.alpha += star.delta;
-        if (star.alpha > 1 || star.alpha < 0) star.delta *= -1;
-
+        const alpha = star.baseAlpha + Math.sin(time * star.twinkleSpeed + star.phase) * 0.3;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+        ctx.fillStyle = `rgba(255,255,255,${Math.max(0, Math.min(1, alpha))})`;
         ctx.fill();
     }
-
-    requestAnimationFrame(animateStars);
+    setTimeout(() => {
+        requestAnimationFrame(animateStars);
+    }, 1000 / 30); // 30 FPS
 }
 
-animateStars();
+// start animation
+animationId = requestAnimationFrame(animateStars);
+
+// cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (animationId) cancelAnimationFrame(animationId);
+});
